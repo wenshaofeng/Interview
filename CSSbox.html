@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CSS盒模型例子</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen">
+        html * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <section class='demo'>
+        <style>
+            .demo {
+                height: 100px;
+                background: #0f0;
+            }
+
+            .parent {
+                height: 200px;
+                background: #456;
+            }
+
+            .child {
+                height: 100px;
+                margin-top: 20px;
+                background: #f00;
+                width: 300px
+            }
+        </style>
+        <h2>为了下面更容易看出margin-top</h2>
+    </section>
+    <section class="parent">
+        <article class="child">
+            <h2>子元素</h2>
+        </article>
+        <h2>父元素（未设置margin-top）</h2>
+    </section>
+
+    <!-- BFC垂直方向边距重叠 -->
+    <section id="margin">
+        <style>
+            #margin {
+                background: blue;
+                overflow: hidden;
+            }
+
+            #margin>p {
+                margin: 5px auto 25px;
+                background: red;
+            }
+        </style>
+        <p>1</p>
+        <div style="overflow:hidden">
+            <!-- 消除重叠，创建BFC -->
+            <p>2</p>
+        </div>
+        <p>3</p>
+    </section>
+
+    <!-- BFC不与float重叠 -->
+    <section id="layout">
+        <style media="screen">
+            #layout {
+                background: red;
+            }
+
+            #layout .left {
+                float: left;
+                width: 100px;
+                height: 100px;
+                background: rgb(43, 35, 36);
+            }
+
+            #layout .right {
+                height: 110px;
+                background: #ccc;
+                overflow: auto;
+                /* 创建BFC */
+            }
+        </style>
+        <div class="left"></div>
+        <div class="right"></div>
+    </section>
+
+    <!-- BFC子元素即使是float也会参与计算 -->
+    <section id="float">
+        <style media="screen">
+            #float {
+                background: aqua;
+                overflow: auto;
+                /*float: left;*/
+            }
+
+            #float .float {
+                float: left;
+                font-size: 30px;
+            }
+        </style>
+        <div class="float">我是浮动元素</div>
+    </section>
+
+</body>
+
+</html>

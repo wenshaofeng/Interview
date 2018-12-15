@@ -1,37 +1,30 @@
-# ele
-
-#### 项目介绍
-学习Vue
-
-#### 软件架构
-软件架构说明
+关于面试，来自于慕课网课程的笔记[前端跳槽面试必备技巧](https://coding.imooc.com/class/129.html)
 
 
-#### 安装教程
+![](https://upload-images.jianshu.io/upload_images/9249356-3082b834a855416e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-1. xxxx
-2. xxxx
-3. xxxx
+![](https://upload-images.jianshu.io/upload_images/9249356-636586d895ce013e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### 使用说明
+![](https://upload-images.jianshu.io/upload_images/9249356-15450d308da8defb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-1. xxxx
-2. xxxx
-3. xxxx
+Elements: 调试DOM元素   
+Console:    报错
+Soures: 源代码  
+Network:    加载顺序 时长
+Performance: 性能
+Memory: 关于内存相关    
+Application:    整个网站的应用
+security: 安全
+audits: 性能
 
-#### 参与贡献
+**head部分**
 
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+双核浏览器优先渲染
+![](https://upload-images.jianshu.io/upload_images/9249356-38a42469023e5de3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+DNS预解析
 
-#### 码云特技
+![](https://upload-images.jianshu.io/upload_images/9249356-c4170275d1dd017d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+![](https://upload-images.jianshu.io/upload_images/9249356-ce93be551b4f2f47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+

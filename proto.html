@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>原型链</title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+      // 第一种方式：字面量
+      var o1 = {name: 'o1'};
+      var o2 = new Object({name: 'o2'});
+      // 第二种方式：构造函数
+      var M = function (name) { this.name = name; };
+      var o3 = new M('o3');
+      // 第三种方式：Object.create
+      var p = {name: 'p'};
+      var o4 = Object.create(p);
+
+      M.prototype.say = function () {
+          console.log('say hi');
+      };
+      var o5 = new M('o5');
+
+      // new运算符的原理
+      var new2 = function (func) {
+          var o = Object.create(func.prototype);//一个新对象被创建（空对象）,继承自func.prototype
+          var k = func.call(o);
+         /*  如果构造函数返回了一个“对象”，那么这个对象会取代整个
+          new出来的结果。如果构造函数没有返回对象，那么new出来的
+          结果为步骤1创建的对象 */
+          if (typeof k === 'object') {
+              return k;
+          } else {
+              return o;
+          }
+      };
+
+
+    </script>
+  </body>
+</html>
