@@ -23,9 +23,10 @@
       }
 
       /**
-       * 实例化
+       * 实例化  虽然声明方式不一样，但是实例化的方式是一样的
+       * 如果构造函数没有传参，new Animal 后面的（）可以不写
        */
-      console.log(new Animal(), new Animal2());
+      console.log(new Animal, new Animal2);
 
       /**
        * 借助构造函数实现继承
@@ -34,13 +35,17 @@
           this.name = 'parent1';
       }
       Parent1.prototype.say = function () {
-
+        console.log('kobe haha');
       };
       function Child1 () {
           Parent1.call(this);
           this.type = 'child1';
       }
-      console.log(new Child1(), new Child1().say());
+      console.log(new Child1);
+      /* 下面会报错，借助构造函数实现继承的缺陷是，
+      无法继承 Parent1 的原型对象上的属性或方法，
+      个人理解为浅继承 */
+    //   console.log(new Child1(), new Child1().say()); 
 
       /**
        * 借助原型链实现继承
@@ -53,7 +58,6 @@
           this.type = 'child2';
       }
       Child2.prototype = new Parent2();
-
       var s1 = new Child2();
       var s2 = new Child2();
       console.log(s1.play, s2.play);
@@ -71,11 +75,13 @@
           this.type = 'child3';
       }
       Child3.prototype = new Parent3();
+      console.log(new Child3);
+      
       var s3 = new Child3();
       var s4 = new Child3();
       s3.play.push(4);
-      console.log(s3.play, s4.play);
-
+      console.log(s3, s4);
+      
       /**
        * 组合继承的优化1
        * @type {String}
@@ -108,6 +114,11 @@
           this.type = 'child5';
       }
       Child5.prototype = Object.create(Parent5.prototype);
+      Child5.prototype.constructor = Child5
+
+      var s7 = new Child5()
+      console.log(s7 instanceof Child5, s7 instanceof Parent5);
+      console.log(s7.constructor);
 
     </script>
   </body>

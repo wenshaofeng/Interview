@@ -152,3 +152,124 @@ Instanceof的判断队则是：沿着A的__proto__这条线来找，同时沿着
 ![](https://upload-images.jianshu.io/upload_images/9249356-f15dd13477aa59ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 面向对象
+![image.png](https://upload-images.jianshu.io/upload_images/9249356-aa51afdf8696b392.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+##### 类的声明 和 实例化
+```javascript
+/*
+    类的声明
+ */
+var Animal = function () {
+    this.name = 'Animal';
+};
+
+/*
+ es6中class的声明
+*/
+class Animal2 {
+    constructor () {
+        this.name = 'Animal2';
+    }
+}
+
+ /**
+* 实例化  虽然声明方式不一样，但是实例化的方式是一样的
+* 如果构造函数没有传参，new Animal 后面的（）可以不写
+*/
+console.log(new Animal(), new Animal2());
+
+```
+##### 类的继承
+
+**借助构造函数继承**
+>原理是改变了 Parent 构造函数的 this指向，改成了指向 Child 的 实例
+```javascript
+/**
+* 借助构造函数实现继承
+*/
+function Parent1 () {
+    this.name = 'parent1';
+}
+Parent1.prototype.say = function () {
+    console.log('kobe haha');
+};
+function Child1 () {
+    Parent1.call(this);
+    this.type = 'child1';
+}
+console.log(new Child1);
+/* 下面会报错，借助构造函数实现继承的缺陷是，
+无法继承 Parent1 的原型对象上的属性或方法，
+个人理解为浅继承 Child1 的__proto__还是指向Object*/
+console.log(new Child1(), new Child1().say()); 
+```
+
+**原型链继承**
+
+```javascript
+ /**
+* 借助原型链实现继承
+*/
+function Parent2 () {
+    this.name = 'parent2';
+    this.play = [1, 2, 3];
+}
+function Child2 () {
+    this.type = 'child2';
+}
+Child2.prototype = new Parent2();
+
+var s1 = new Child2();
+var s2 = new Child2();
+console.log(s1.play, s2.play);
+s1.play.push(4);
+
+/* 缺点：原型链中原型对象是共用的，所以改变其中一个实例，其他实例都会改变 */
+```
+**组合继承**
+```javascript
+/**
+* 组合方式
+*/
+function Parent3 () {
+    this.name = 'parent3';
+    this.play = [1, 2, 3];
+}
+function Child3 () {
+    Parent3.call(this);
+    this.type = 'child3';
+}
+Child3.prototype = new Parent3();//这样写，Parent3 的构造函数执行了两次
+Child3.prototype = Parent3.prototype;//优化
+console.log(new Child3);
+
+var s3 = new Child3();
+var s4 = new Child3();
+s3.play.push(4);
+console.log(s3, s4);
+console.log(s3.constructor);
+console.log(s4.constructor);
+
+```
+实例之间不会影响，原因是其覆盖的是自身的属性
+![](https://upload-images.jianshu.io/upload_images/9249356-05be9b4498b26307.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+缺点：无法确定实例是真正由谁创建的
+
+**优化**
+```javascript
+
+function Parent5 () {
+    this.name = 'parent5';
+    this.play = [1, 2, 3];
+}
+function Child5 () {
+    Parent5.call(this);
+    this.type = 'child5';
+}
+Child5.prototype = Object.create(Parent5.prototype); //关键
+Child5.prototype.constructor = Child5
+
+var s7 = new Child5()
+console.log(s7 instanceof Child5, s7 instanceof Parent5);
+console.log(s7.constructor);
+```

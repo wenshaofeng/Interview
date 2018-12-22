@@ -85,13 +85,28 @@ box-sizing:border-box;
 ##### [CSS画三角形原理（border）](http://www.i-meili.com/view-48.html)
 
 #### BFC
-- BFC的基本概念
+- **BFC的基本概念**
     1.BFC 即 Block Formatting Contexts (块级格式化上下文)，它属于上述定位方案的普通流。
     2.具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。
     3.通俗一点来讲，可以把 BFC 理解为一个封闭的大箱子，箱子内部的元素无论如何翻江倒海，都不会影响到外部。
-- BFC的原理
-- 如何创建BFC
-- BFC使用场景
+- **BFC的原理**
+    1. 内部的box会在垂直方向，一个接一个的放置
+    2. 每个元素的margin box的左边，与包含块border box的左边相接触（对于从做往右的格式化，否则相反）
+    3. box垂直方向的距离由margin决定，属于同一个bfc的两个相邻box的margin会发生重叠
+    4. bfc的区域不会与浮动区域的box重叠
+    5. bfc是一个页面上的独立的容器，外面的元素不会影响bfc里的元素，反过来，里面的也不会影响外面的
+    6. 计算bfc高度的时候，浮动元素也会参与计算
+
+- **如何创建BFC**
+    1. float属性不为none（脱离文档流）
+    2. position为absolute或fixed
+    3. display为inline-block,table-cell,table-caption,flex,inine-flex
+    4. overflow不为visible
+    5. 根元素
+- **BFC使用场景**
+    1. 自适应两栏布局
+    2. 清除内部浮动 
+    3. 防止垂直margin重叠
 
 ##### 同一个BFC内垂直方向边距重叠
 ```
