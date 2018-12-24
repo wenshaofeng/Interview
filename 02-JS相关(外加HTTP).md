@@ -253,7 +253,7 @@ console.log(s4.constructor);
 ```
 实例之间不会影响，原因是其覆盖的是自身的属性
 ![](https://upload-images.jianshu.io/upload_images/9249356-05be9b4498b26307.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-缺点：无法确定实例是真正由谁创建的
+缺点：无法确定实例是真正由谁创建的,子类的原型对象就是父类的原型对象
 
 **优化**
 ```javascript
@@ -267,7 +267,7 @@ function Child5 () {
     this.type = 'child5';
 }
 Child5.prototype = Object.create(Parent5.prototype); //关键
-Child5.prototype.constructor = Child5
+Child5.prototype.constructor = Child5 //上面的不能这样改，因为改的同时也改变了父类的constructor
 
 var s7 = new Child5()
 console.log(s7 instanceof Child5, s7 instanceof Parent5);

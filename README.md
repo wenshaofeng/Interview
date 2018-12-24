@@ -28,3 +28,4 @@ DNS预解析
 
 ![](https://upload-images.jianshu.io/upload_images/9249356-ce93be551b4f2f47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+![](https://upload-images.jianshu.io/upload_images/9249356-fb8eae38a1a35082.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
