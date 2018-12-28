@@ -114,6 +114,9 @@ false 是指捕获还是冒泡
 ![](https://upload-images.jianshu.io/upload_images/9249356-a7f7441afeeb633b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
+
+
+
 #### 原型、构造函数、实例、原型链
 
 #### instance of 原理
@@ -128,7 +131,12 @@ Instanceof的判断队则是：沿着A的__proto__这条线来找，同时沿着
    console.log(Function instanceof Function) // true
    console.log(Function instanceof Object )   // true
 ```
+#### typeof 类型判断
+- `typeof null` 结果是`object` ,实际这是`typeof`的一个bug ， `null` 是原始值 ，非引用类型
 
+- `typeof [1,2,3]`结果是 `object`,结果中没有`array`这一项，引用类型除了`function` 其他的全是 `object`
+
+- `typeof Symbol()` 用 `typeof `获取`symbol` 类型的值得到的是`symbol` ,这是ES6 新增的
 #### new运算符
 ![](https://upload-images.jianshu.io/upload_images/9249356-61ae89b1a9409c5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -273,3 +281,4 @@ var s7 = new Child5()
 console.log(s7 instanceof Child5, s7 instanceof Parent5);
 console.log(s7.constructor);
 ```
+
