@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>forvue</title>
+</head>
+
+<body>
+    <input type="text" id="textInput">
+    输入：<span id="textSpan"></span>
+    <script>
+        var obj = {},
+            textInput = document.querySelector('#textInput'),
+            textSpan = document.querySelector('#textSpan');
+
+        Object.defineProperty(obj, 'foo', {
+            set: function (newValue) {
+                textInput.value = newValue;
+                textSpan.innerHTML = newValue;
+            },
+            get: function () {
+                console.log(获取obj.foo的时候会触发get函数)
+            }
+        });
+
+        textInput.addEventListener('keyup', function (e) {
+            obj.foo = e.target.value; //给属性赋值自动触发set函数
+        });
+    </script>
+</body>
+
+</html>
