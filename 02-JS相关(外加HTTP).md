@@ -131,6 +131,7 @@ Instanceof的判断队则是：沿着A的__proto__这条线来找，同时沿着
    console.log(Function instanceof Function) // true
    console.log(Function instanceof Object )   // true
 ```
+
 #### typeof 类型判断
 - `typeof null` 结果是`object` ,实际这是`typeof`的一个bug ， `null` 是原始值 ，非引用类型
 
@@ -187,6 +188,7 @@ class Animal2 {
 console.log(new Animal(), new Animal2());
 
 ```
+
 ##### 类的继承
 
 **借助构造函数继承**
@@ -281,4 +283,237 @@ var s7 = new Child5()
 console.log(s7 instanceof Child5, s7 instanceof Parent5);
 console.log(s7.constructor);
 ```
+
+
+
+
+##### bind 、 call 和apply
+`函数.call(指定任何对象) ;`//可以直接执行函数
+
+`let 新函数 = 函数.bind(obj)`
+// 新函数的this，会永久的指向 obj ，因此我们说this 被绑定了
+
+```javascript
+//手动实现一个bind方法
+Function.prototype.bind = function(target) {
+    var fn = this ;
+    return function () {
+        fn.apply(target ,arguments);
+    }
+}
+```
+
+##### 箭头函数 中 的 this
+
+箭头函数不能 new ，因为 箭头函数没有自己的 this
+
+```javascript
+<script>
+    let obj = {
+        id: 99,
+        hello: () => {
+            // 如何判断箭头函数中的 this 指向 ： 一句话，当箭头函数不存在
+            console.log(this.id) //指向 window 对象  
+        },
+        print: function () {
+            /* setTimeout(function () {
+                console.log(this.id); // 这个this指向 window 
+            }, 200) */
+            setTimeout(() => {
+                console.log(this.id); //假装没有写过这个函数,类似于下面
+            }, 200)
+        },
+        //类似于
+        print: function () {
+            this.id
+            setTimeout(function () {
+
+            }, 200)
+        }
+    }
+    obj.hello()
+    
+    obj.print()
+</script>
+```
+
+##### eval 函数
+
+eval() 能把函数里的字符串当成JS代码执行
+
+应用：requireJS ==> AMD 模块化规范
+
+```javascript
+define(["jquery","moduleA","moduleB"],function($,a,b){
+
+})
+
+加载不同模块的JS 时，引入的实际上是
+<script src='xxx.js' type="text/html">  </script>
+
+怎么控制 它们的异步加载，用的就是 eval(xxx.js) 动态执行代码
+
+ setTimeout("alert(123)", 2000)  //这也是eval() 的一种写法
+
+```
+
+`use strict` 下，eval() 有自己的作用域,只能在()里面
+```html
+ <script>
+    // "use strict"
+    var a = 100
+
+    function test() {
+        eval("var a = 20")
+        console.log(a);
+    }
+    test() //  20  "use strict" 时 打印出 100
+</script>
+```
+
+#####  函数防抖 和 函数节流
+
+两者的区别：
+- 函数防抖 ===> 每次调用函数时，延迟执行 (固定的单位时间内，反复触发，只执行最后一次)
+- 函数节流 ===> 降低函数执行的频率 (固定的单位时间内，就会执行一次)
+
+>一个是终止前一个函数执行 (防抖)
+一个是延迟下一个函数执行 (节流)
+
+
+
+**函数防抖**
+
+>当用户在做某些操作的时候(滚动页面时弹出返回顶部、搜索框输入关键字弹出下拉列表)，大部分情况下可能只是需要在用户操作结束后返回用户所需要的内容，而不用短时间内触发多次,所以我们可以通过定时器 减少短时间内响应触发的次数
+
+```javascript
+function debounce(callback, delay) {
+    var t = null;
+    return function (e) {
+        clearTimeout(t);
+        t = setTimeout(() => {
+            callback.call(e)
+        }, delay)
+    }
+}
+
+window.onscroll = debounce(function () {
+    console.log("调用了一次");
+}, 500)
+
+```
+
+![](https://upload-images.jianshu.io/upload_images/9249356-a897bf3b262e6a31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+>如果函数执行的次数太频繁，低于我们设置的最小时间，就把前面执行的函数都关掉，以最后要执行的函数为准
+
+
+**函数节流**
+
+减少函数执行的频率
+
+```javascript
+function throttle(callback, duration = 200) {
+    var lasttime = new Date().getTime()
+    return function () {
+        var now = new Date().getTime()
+        if (now - lasttime > duration) {
+            lasttime = now
+            callback()
+        }
+    }
+}
+
+window.onscroll = throttle(function () {
+    console.log("调用了一次");
+}, 500)
+```
+
+![](https://upload-images.jianshu.io/upload_images/9249356-7e6351665de6d97a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+##### 函数的柯里化 ===>函数的多参 ，变成单参
+
+fn(2,3,4); ===> fn(2)(3)(4) == 24
+
+```javascript
+function fn(a,b,c) {
+    return a*b*c;
+}
+
+function fn(a) {
+    return function(b) {
+        return function(c) {
+            return a*b*c  //典型的闭包
+        }
+    }
+}
+
+//下面把第一种函数变成第二种函数的过程，就叫函数柯里化
+
+fn(1,2,4)
+fn(1,5,6)
+fn(1,3,5)
+fn(1,3,4)
+
+let ft = fn(1)
+
+ft(2,4)
+ft(5,6)
+ft(3,5)
+ft(3,4)
+
+```
+
+
+
+##### 作用域对象
+
+```javascript
+    var name = 'li'
+    window // 全局作用域对象
+
+    function test() {
+        // 可以理解为 创建了一个作用域对象
+        // var  ScopeTest （不存在）
+        var num = 0
+
+        function mc() {
+                // var  ScopeMc （不存在）
+            var num = 100
+            console.log(num);
+        }
+        //作用域.mc() 看不见的对象(编译时)
+        mc();
+    }
+
+    对象.方法();
+    方法();
+```
+
+##### 垃圾回收机制
+
+[5张动图带你看懂垃圾回收算法](https://blog.csdn.net/gg_18826075157/article/details/73327492) 
+
+- 引用计数法  (容易产生无数的碎片) 为什么闭包容易造成泄露，因为引用的变量有标记
+- 标记清除法
+- 标记整理法
+- 复制整理法 (比较好的 ，java里的算法) 
+
+**内存泄露**
+- 闭包
+- 全局变量(模块化编程后一般不会出现这种问题)
+- 定时器忘了关
+- DOM元素的引用
+
+```html
+
+<button id="btn" type="button">按钮</button>
+<script>
+    let btn = document.getElementById('btn')
+    btn.remove()
+</script>
+
+```
+按钮看起来是在页面上被删除了，但是
+![](https://upload-images.jianshu.io/upload_images/9249356-d84ecffd0bfaedce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 

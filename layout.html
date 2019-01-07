@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>三栏布局</title>
     <style media="screen">
-     html *{
-         padding: 0;
-         margin: 0;
-     }
-     .layout article div{
-         min-height: 100px;
-     }
+        html * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .layout article div {
+            min-height: 100px;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- 浮动定位 -->
     <section class="layout float">
         <style media="screen">
-          .layout.float .left{
-            float: left;
-            width:300px;
-            background : red;
-        }
-        .layout.float .right{
-            float: right;
-            width:300px;
-            background : blue;
-        }
-        .layout.float .center{
-        
-            background : yellow;
-        }
+            .layout.float .left {
+                float: left;
+                width: 300px;
+                background: red;
+            }
+
+            .layout.float .right {
+                float: right;
+                width: 300px;
+                background: blue;
+            }
+
+            .layout.float .center {
+
+                background: yellow;
+            }
         </style>
-      
+
         <article class="left-right-center">
             <div class="left"></div>
             <div class="right"></div>
@@ -45,171 +50,167 @@
                 2.这是三栏布局中间部分
                 1.这是三栏布局中间部分
                 2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分
+                2.这是三栏布局中间部分1.这是三栏布局中间部
             </div>
-           
+
         </article>
     </section>
- <!-- 绝对定位 -->
+    <!-- 绝对定位 -->
     <section class="layout absolute">
-            <style media="screen">
+        <style media="screen">
             .layout.absolute {
                 margin-top: 10px
             }
-            .layout.absolute .left-center-right> div{
+
+            .layout.absolute .left-center-right>div {
                 position: absolute
             }
 
-            .layout.absolute .left{
-                left:0 ;
-                width:300px;
-                background : red;
-            }
-            .layout.absolute .right{
-                right:0;
+            .layout.absolute .left {
+                left: 0;
                 width: 300px;
-                background : blue;
+                background: red;
             }
-            .layout.absolute .center{
-                left: 300px ;
-                right:300px ;
-                background : yellow;
+
+            .layout.absolute .right {
+                right: 0;
+                width: 300px;
+                background: blue;
             }
-            </style>
-          
-            <article class="left-center-right">
-                <div class="left"></div>
-                <div class="center">
-                        <h1>绝对定位解决方案</h1>
-                        1.这是三栏布局中间部分
+
+            .layout.absolute .center {
+                left: 300px;
+                right: 300px;
+                background: yellow;
+            }
+        </style>
+
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="center">
+                <h1>绝对定位解决方案</h1>
+                1.这是三栏布局中间部分
                 2.这是三栏布局中间部分
                 1.这是三栏布局中间部分
                 2.这是三栏布局中间部分1.这是三栏布局中间部分
                 2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分1.这是三栏布局中间部分
-                2.这是三栏布局中间部分
-                    </div>
-                   
-                <div class="right"></div>
-                
-            </article>
+
+            </div>
+
+            <div class="right"></div>
+
+        </article>
     </section>
- <!-- flex布局 -->
+    <!-- flex布局 -->
     <section class="layout flex">
         <style media="screen">
-        .layout.flex {
-            margin-top: 120px
-        }
-        .layout.flex .left-center-right{
-           display: flex
-        }
+            .layout.flex {
+                margin-top: 200px
+            }
 
-        .layout.flex .left{
-            width:300px;
-            background : red;
-        }
-        .layout.flex .right{
-            width: 300px;
-            background : blue;
-        }
-        .layout.flex .center{
-            flex: 1 ;
-            background : yellow;
-        }
+            .layout.flex .left-center-right {
+                display: flex
+            }
+
+            .layout.flex .left {
+                width: 300px;
+                background: red;
+            }
+
+            .layout.flex .right {
+                width: 300px;
+                background: blue;
+            }
+
+            .layout.flex .center {
+                flex: 1;
+                background: yellow;
+            }
         </style>
-    
+
         <article class="left-center-right">
             <div class="left"></div>
             <div class="center">
-                    <h1>flex布局解决方案</h1>
-                    1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分
-                    1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分1.这是三栏布局中间部分
-                    2.这是三栏布局中间部分
-                </div>
-            
+                <h1>flex布局解决方案</h1>
+                1.这是三栏布局中间部分
+                2.这是三栏布局中间部分
+                1.这是三栏布局中间部分
+                2.这是三栏布局中间部分1.这是三栏布局中间部分
+                2.这是三栏布局中间部分1.这是三栏布局中间部分
+
+            </div>
+
             <div class="right"></div>
-            
+
         </article>
     </section>
-<!-- table 布局 -->
+    <!-- table 布局 -->
     <section class="layout table">
-            <style media="screen">
+        <style media="screen">
             .layout.table {
                 margin-top: 10px
             }
-            .layout.table .left-center-right{
-            display: table;
-            width :100%;
-            height: 100px;
+
+            .layout.table .left-center-right {
+                display: table;
+                width: 100%;
+                height: 100px;
             }
-            .layout.table .left-center-right>div{
+
+            .layout.table .left-center-right>div {
                 display: table-cell
-            } 
-            .layout.table .left{
-                width:300px;
-                background : red;
             }
-            .layout.table .right{
+
+            .layout.table .left {
                 width: 300px;
-                background : blue;
+                background: red;
             }
-            .layout.table .center{
-                
-                background : yellow;
+
+            .layout.table .right {
+                width: 300px;
+                background: blue;
             }
-            </style>
-        
-            <article class="left-center-right">
-                <div class="left"></div>
-                <div class="center">
-                        <h1>Table布局解决方案</h1>
-                        1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分
-                        1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分1.这是三栏布局中间部分
-                        2.这是三栏布局中间部分
-                    </div>
-                
-                <div class="right"></div>
-                
-            </article>
+
+            .layout.table .center {
+
+                background: yellow;
+            }
+        </style>
+
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="center">
+                <h1>Table布局解决方案</h1>
+                1.这是三栏布局中间部分
+                2.这是三栏布局中间部分
+                1.这是三栏布局中间部分
+                2.这是三栏布局中间部分1.这是三栏布局中间部分
+                2.这是三栏布局中间部分1.这是三栏布局中间部分
+
+            </div>
+
+            <div class="right"></div>
+
+        </article>
     </section>
 
-总结：       中间自适应的原理                             优点                    缺点           
-float布局   块状元素自动撑开                           兼容性较好                清除浮动
-绝对定位     块状元素自动撑开(相对左右定位好以后)                              脱离文档流。可用性较差
-flex布局      flex设为1后撑开
-table布局     整个表格撑开，左边300右边300中间自适应    
-  
-进一步：中间高度不固定，哪些不能用？
-float 绝对定位 
-兼容性：
-flex ，table 
+
+
+
+
+    |总结：| 中间自适应的原理| 优点| 缺点|
+    |-- | -- | -- |-- |
+    |float布局| 块状元素自动撑开| 兼容性较好| 清除浮动
+    |绝对定位| 块状元素自动撑开(相对左右定位好以后)| |脱离文档流。可用性较差|
+    |flex布局| flex设为1后撑开| | |
+    |table布局 |整个表格撑开，左边300右边300中间自适应| | |
+
+    进一步：中间高度不固定，哪些不能用？
+    float 绝对定位
+    兼容性：
+    flex ，table
 
 
 </body>
+
 </html>
