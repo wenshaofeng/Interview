@@ -1,5 +1,5 @@
 关于面试，来自于慕课网课程的笔记[前端跳槽面试必备技巧](https://coding.imooc.com/class/129.html)
-
+以及其他杂项
 
 ![](https://upload-images.jianshu.io/upload_images/9249356-3082b834a855416e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
