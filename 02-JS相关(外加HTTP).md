@@ -517,3 +517,100 @@ ft(3,4)
 按钮看起来是在页面上被删除了，但是
 ![](https://upload-images.jianshu.io/upload_images/9249356-d84ecffd0bfaedce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+##### Promise
+
+##### 深拷贝 和 浅拷贝
+
+浅拷贝 (第一层的复制)
+可以将对象的最外层属性全部复制 ，里层的属性仍然是引用关系
+
+```javascript
+var obj = {
+    a: 1,
+    b: 2,
+    c: {
+        d: 10,
+        e: 50
+    }
+}
+var obj1 = {}
+// 浅拷贝 方式 1 
+/*   for (var key in obj) {
+        obj1[key] = obj[key]
+    } */
+// 浅拷贝 方式 2 
+Object.assign(obj1, obj)
+obj.b = 20
+obj.c.d = 40
+console.log(obj1); //b:2  d:40
+console.log(obj); //b:2  d:40
+```
+![](https://upload-images.jianshu.io/upload_images/9249356-8ffe19af20b4ec6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+深拷贝
+
+```javascript
+var obj = {
+    a: 1,
+    b: 2,
+    c: {
+        d: 10,
+        e: 50,
+        f: undefined
+    }
+}
+var obj1 = {}
+//深拷贝 方式 1
+obj1 = JSON.parse(JSON.stringify(obj))
+
+function cloneObject(target, source) {
+
+}
+
+obj.b = 20
+obj.c.d = 40
+console.log(obj1); //b:2  d:40
+console.log(obj); //b:2  d:40
+```
+![](https://upload-images.jianshu.io/upload_images/9249356-17f81d84346185d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+使用`obj1 = JSON.parse(JSON.stringify(obj))`的缺点：
+- 会忽略 undefined
+- 会忽略 symbol
+- 不能序列化函数
+- 不能解决循环引用的对象(不可遍历属性)
+>实际上，实现一个完整的深拷贝是很困难的，需要考虑许多边界条件，实际应用中推荐使用 loadsh 这个第三方函数库来实现
+
+##### Proxy 代理
+
+```javascript
+
+ var obj = {
+    a: 1,
+    b: 2
+}
+var handler = {
+    //             obj      a      20
+    set: function (target, key, value) {
+        console.log("设置属性");
+        target[key] = value
+    },
+    get: function (target, key) {
+        console.log("获取属性");
+        return target[key]
+    },
+    has: function (target, key) {
+        return key in target //key是不是属于target
+    }
+
+}
+var p = new Proxy(obj, handler)
+p.a = 20
+console.log(obj);
+console.log(p.a); //获取属性
+console.log("a" in p); // true
+console.log("b" in p); // true
+console.log("c" in p); // false
+```
+
