@@ -98,3 +98,51 @@ router.beforeEach((to,from,next)=>{
 
 ```
 
+
+## 路由懒加载 (按需加载)
+
+## 什么是 vue-loader
+>vue-loader 是一个加载器 ，能把 .vue 文件转化成JavaScript模块
+
+为什么要转译这个 vue 组件
+- 可以动态地渲染一些数据
+- 对三个标签都做了优化 `script` 中可以直接使用 es6 style 也默认可以使用 sass 并且还提供了作用域的选择
+- 在开发阶段 ， 还提供了热加载
+
+## 插槽(具名 、 匿名 、 作用域)
+>vue 中的插槽，说白了就是一个占位的 ，我们可以指定是否往里面添加元素
+- 默认插槽
+- 具名插槽
+- 作用域插槽
+
+## 虚拟DOM
+
+![](https://upload-images.jianshu.io/upload_images/9249356-1ee4463dfb0fd857.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+## MVVM 和 MVC 
+[百度百科：MVC框架](https://baike.baidu.com/item/MVC%E6%A1%86%E6%9E%B6?fromtitle=MVC%E6%A8%A1%E5%BC%8F&fromid=713147)
+[百度百科：MVP模式](https://baike.baidu.com/item/MVP%E6%A8%A1%E5%BC%8F/10961746?fr=aladdin)
+MVC
+![MVC](https://upload-images.jianshu.io/upload_images/9249356-e95a4c9c424ed62a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+![](https://upload-images.jianshu.io/upload_images/9249356-39a3de3e5c65c644.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+MVP
+![](https://upload-images.jianshu.io/upload_images/9249356-5aff1b466aec2c11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+如何理解Vue的 MVVM (MV*)模式
+
+mvvm 和 mvc 之间的区别
+- mvc 相对而言 对数据的反映会比 mvvm 慢 ，不能简单地说 mvvm 就是数据双向绑定 ，mvvm 指的是数据层 (model层) 和 视图层 (view层) 是实时响应的，响应的速度更快
+- vue 是专注于 view 和 viewModel 的框架 ，相比于 react 只专注于 view 层 ，vue 底层帮我们实现了 model 和 数据 的 绑定 ( 实时更新 ) ，而react 数据更新后需要我们手动调用 setState 方法去更新视图
+
+## Vue中的keep-alive 
+
+keep-alive 可以将不活动的组件缓存，提高性能，一般和路由匹配一起使用
+它提供了 include 与 exclude 两个属性 允许组件有条件的缓存
+
+>原理
+在created 的时候 ，将需要缓存的vnode节点放到 cache(缓存) 中 ,在render 的时候，根据name再进行取出
