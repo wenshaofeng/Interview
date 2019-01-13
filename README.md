@@ -1,5 +1,7 @@
-关于面试，来自于慕课网课程的笔记[前端跳槽面试必备技巧](https://coding.imooc.com/class/129.html)
+关于面试，来自于慕课网 **快乐动起来啊**老师 课程的笔记[前端跳槽面试必备技巧](https://coding.imooc.com/class/129.html)
 以及其他杂项
+
+![主要大纲](./前端跳槽面试必备技巧.jpeg)
 
 ![](https://upload-images.jianshu.io/upload_images/9249356-3082b834a855416e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -22,7 +24,9 @@ audits: 性能
 双核浏览器优先渲染
 ![](https://upload-images.jianshu.io/upload_images/9249356-38a42469023e5de3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-DNS预解析
+DNS预解析  
+![](https://upload-images.jianshu.io/upload_images/9249356-ffab2c3710074545.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 ![](https://upload-images.jianshu.io/upload_images/9249356-c4170275d1dd017d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -36,6 +40,15 @@ DNS预解析
 - 为什么要用这样的框架
 - 在项目中的角色是什么？解决过哪些难题,用到了什么技术方案
 - 通过项目学到了什么？对自己的项目是否满意？有改进空间吗？
+
+### 前端框架
+什么是框架？
+简单点说，框指的是约束，架指的是架构、支撑。框架会控制我们写代码的结构、依赖关系和交互流程，也就是说我们在框架中实现需求可以更专注于业务代码，而非业务代码，大部分框架都会帮我们完成
+
+不足:
+- 有场景要求，开发自由度降低
+- 黑盒开发，框架本身有出错的风险
+- 有学习成本
 
 ### Vue 和 React 比较
 ![](https://upload-images.jianshu.io/upload_images/9249356-c117a37736a725a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -66,7 +79,11 @@ DNS预解析
     5.state对象在react应用中不可变的,需要使用setState方法更新状态;
     在vue中,state对象不是必须的,数据由data属性在vue对象中管理；
 
+    6.相对于react来说，vue的 api 要多得多，react的 api 基本都围绕着组件的生命周期进行
+    
 ![](https://upload-images.jianshu.io/upload_images/9249356-fb8eae38a1a35082.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](https://upload-images.jianshu.io/upload_images/9249356-ad9840c0e31a067c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - [01-CSS相关](./01-CSS相关.md) 
     - layout.html

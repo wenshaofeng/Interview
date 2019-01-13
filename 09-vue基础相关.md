@@ -1,9 +1,13 @@
 ## 生命周期函数
 vue 生命周期分为四个阶段
-- 组件创建时 created    (执行DOM的操作一般放在这)
+- 组件创建时 created    (可以修改 data 里的数据 ，axios请求最早可以放在这)
 - 组件渲染时 mounted    (只执行一次，一般在该处发送请求)
 - 组件更新时 updated   (数据更新)
 - 组件销毁时 destroyed (路由切换)
+- **特殊情况** Vue中有一个内置的组件 `keep-alive` 自带有两个生命周期 
+![](https://upload-images.jianshu.io/upload_images/9249356-99402fbfcd2a01cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- created 和 mounted 这两个生命周期在组件渲染时只会被调用一次，且在使用服务端渲染(SSR) 的时候，`mounted`&&`beforeMount` 是不会被调用的
 
 ## axios 
 >axios 是什么？ 怎么使用？ 描述使用它实现登录功能的流程？

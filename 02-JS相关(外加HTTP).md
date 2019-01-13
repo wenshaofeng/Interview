@@ -72,6 +72,26 @@ false 是指捕获还是冒泡
 ![](https://upload-images.jianshu.io/upload_images/9249356-61cde4d523e051eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![](https://upload-images.jianshu.io/upload_images/9249356-ad44cb329631120c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+#### 本地存储
+- cookie
+1. name: cookie 的名称
+2. domain: cookie 生效的域名 (**注意**domain 是有作用域概念的，比如某一级域名只能操作自身和上一级域名的cookie,而不能操作其他同级域名的cookie，也不能操作其子域名的cookie)
+3. path: cookie 生效的路径
+4. expires: cookie 过期时间
+5. HttpOnly： 用户端不可更改
+
+- session
+1. 服务端保存请求信息的机制
+2. sessionId 通常存放在cookie 里
+3. 会话由浏览器控制，会话结束，session失效
+
+- localStorage
+1. H5新特性
+2. 有域名限制，不存在作用域概念
+3. 只有key-value
+4. 没有过期时间
+5. 浏览器关闭后不消失
+
 ### 原型链
 
 ![](https://upload-images.jianshu.io/upload_images/9249356-65ef1e3785de2e4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -520,6 +540,8 @@ ft(3,4)
 ##### Promise
 
 ##### 深拷贝 和 浅拷贝
+![概览](https://upload-images.jianshu.io/upload_images/9249356-2aa9e85bb4bbd11c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 浅拷贝 (第一层的复制)
 可以将对象的最外层属性全部复制 ，里层的属性仍然是引用关系
@@ -580,8 +602,67 @@ console.log(obj); //b:2  d:40
 - 会忽略 symbol
 - 不能序列化函数
 - 不能解决循环引用的对象(不可遍历属性)
+
+Zepto 中深拷贝的代码
+```javascript
+    // 内部方法：用户合并一个或多个对象到第一个对象
+    // 参数：
+    // target 目标对象  对象都合并到target里
+    // source 合并对象
+    // deep 是否执行深度合并
+    function extend(target, source, deep) {
+        for (key in source)
+            if (deep && (isPlainObject(source[key]) || isArray(source[key]))) {
+                // source[key] 是对象，而 target[key] 不是对象， 则 target[key] = {} 初始化一下，否则递归会出错的
+                if (isPlainObject(source[key]) && !isPlainObject(target[key]))
+                    target[key] = {}
+
+                // source[key] 是数组，而 target[key] 不是数组，则 target[key] = [] 初始化一下，否则递归会出错的
+                if (isArray(source[key]) && !isArray(target[key]))
+                    target[key] = []
+                // 执行递归
+                extend(target[key], source[key], deep)
+            }
+            // 不满足以上条件，说明 source[key] 是一般的值类型，直接赋值给 target 就是了
+            else if (source[key] !== undefined) target[key] = source[key]
+    }
+
+    // Copy all but undefined properties from one or more
+    // objects to the `target` object.
+    $.extend = function(target){
+        var deep, args = slice.call(arguments, 1);
+
+        //第一个参数为boolean值时，表示是否深度合并
+        if (typeof target == 'boolean') {
+            deep = target;
+            //target取第二个参数
+            target = args.shift()
+        }
+        // 遍历后面的参数，都合并到target上
+        args.forEach(function(arg){ extend(target, arg, deep) })
+        return target
+    }
+
+```
+
+![](https://upload-images.jianshu.io/upload_images/9249356-82acde3ee66a4e33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+原文章→[js 深拷贝 vs 浅拷贝](https://juejin.im/post/59ac1c4ef265da248e75892b)
+
 >实际上，实现一个完整的深拷贝是很困难的，需要考虑许多边界条件，实际应用中推荐使用 loadsh 这个第三方函数库来实现
 
+```javascript
+var _ = require('lodash');
+var obj1 = {
+    a: 1,
+    b: { f: { g: 1 } },
+    c: [1, 2, 3]
+};
+var obj2 = _.cloneDeep(obj1);
+console.log(obj1.b.f === obj2.b.f);
+// false
+
+
+```
 ##### Proxy 代理
 
 ```javascript
