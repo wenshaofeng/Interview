@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        var time = new Date().getTime()
+        /*    var time = new Date().getTime()
         console.log("a");
         setTimeout(function () {
             console.log(new Date().getTime() - time);
@@ -22,7 +22,35 @@
             console.log(new Date().getTime() - time);
             console.log("c");
         })
-        console.log("d");
+        console.log("d"); */
+
+        /*  setTimeout(function(){
+		    console.log('1')
+		},1000);
+ 
+		new Promise(function(resolve){
+		    resolve()
+            console.log('2');
+		}).then(function(){
+		    console.log('3')
+		});
+ 
+		console.log('4'); */
+
+        setTimeout(function () {
+            console.log('定时器开始啦')
+        });
+
+        new Promise(function (resolve) {
+            console.log('马上执行for循环啦');
+            for (var i = 0; i < 10000; i++) {           
+                i == 99 && resolve();           
+            }
+        }).then(function () {
+            console.log('执行then函数啦')
+        });
+
+        console.log('代码执行结束');
     </script>
 </body>
 
