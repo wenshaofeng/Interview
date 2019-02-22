@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <input type="text" id="textInput">
+    <!--   <input type="text" id="textInput">
     输入：<span id="textSpan"></span>
     <script>
         var obj = {},
@@ -27,6 +27,36 @@
         textInput.addEventListener('keyup', function (e) {
             obj.foo = e.target.value; //给属性赋值自动触发set函数
         });
+    </script> -->
+
+    <script>
+        let obj = {}
+        //默认不可配置、不可改变、不可枚举
+        Object.defineProperty(obj, 'school', {
+            configurable: true,
+            // writable: true,
+            enumerable:true,
+            // value: 'ljw',
+
+            get(){
+               return 'kobe'
+            },
+            set(val){
+                
+                console.log('改变了');      
+            }
+        })
+
+
+
+        // delete obj.school;
+        obj.school = 'LBJ'
+
+        console.log(obj.school);
+        for (let key in obj) {
+            console.log(key);
+
+        }
     </script>
 </body>
 

@@ -150,3 +150,27 @@ keep-alive 可以将不活动的组件缓存，提高性能，一般和路由匹
 
 >原理
 在created 的时候 ，将需要缓存的vnode节点放到 cache(缓存) 中 ,在render 的时候，根据name再进行取出
+
+
+## MVVM
+
+```javascript
+ Object.defineProperty(obj, 'school', {
+    configurable: true,
+    writable: true,
+    enumerable:true,
+    value: 'ljw',
+
+    get(){
+        
+    },
+    set(){
+
+    }
+})
+
+```
+
+![](https://upload-images.jianshu.io/upload_images/9249356-5643e315c7f94638.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+有了 get 和 set , 就不能再有 `writable`或`value`
